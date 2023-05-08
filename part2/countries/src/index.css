@@ -1,0 +1,16 @@
+.country-item {
+    margin: 10px 0;
+}
+
+.country-item__btn {
+    padding: 4px 8px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-left: 6px;
+    cursor: pointer;
+}
+
+.country-item__btn:hover {
+    background: #ddd;
+}
