@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-const Notification = ({message, setNoti}) => {
-    if (message === null) {
-        return null
-    } else {
-        setTimeout(() => setNoti(null), 3000)  
-    } 
+const Notification = ({noti, setNoti}) => {
+  useEffect(() => {
+    setTimeout(() => {
+      setNoti({...noti, content: null})
+    }, 3000)
+  }, [])
 
   return (
-    <div className="noti">{message}</div>
+    <div className={`noti ${noti?.type}`}>{noti.content}</div>
   )
 }
 

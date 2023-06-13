@@ -14,7 +14,10 @@ const App = () => {
   const [newName, setNewName] = useState("");
   const [newPhone, setNewPhone] = useState("");
   const [searchValue, setSearchValue] = useState("");
-  const [noti, setNoti] = useState(null)
+  const [noti, setNoti] = useState({
+    type: "info",
+    content: null
+  })
 
   useEffect(() => {
     phonebookService
@@ -39,10 +42,9 @@ const App = () => {
         setNoti={setNoti}
       />
 
-      <Notification 
-        message={noti} 
-        setNoti={setNoti}
-      />
+     {noti.content && 
+        <Notification noti={noti} setNoti={setNoti}/>
+      }
       <h2>Numbers</h2>
       <Persons persons={persons} setPersons={setPersons} searchValue={searchValue} />
     </div>

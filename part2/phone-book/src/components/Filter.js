@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Filter = ({ searchValue, setSearchValue }) => {
+  const [input, setInput] = useState("")
   const handleSearchedValue = (e) => {
-    const searchedInput = e.target.value.toLowerCase();
-    setSearchValue(searchedInput);
+    setInput(e.target.value)
+    setSearchValue(e.target.value.toLowerCase());
   };
   
   return (
     <div>
       <span>Filter shown with </span>
-      <input value={searchValue} onChange={handleSearchedValue} />
+      <input value={input} onChange={handleSearchedValue} />
     </div>
   );
 };
