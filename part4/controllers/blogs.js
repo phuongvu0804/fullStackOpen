@@ -6,6 +6,19 @@ blogsRouter.get('/', async (request, response) => {
   response.json(blogs)
 })
 
+blogsRouter.get('/:id', async (request, response) => {
+  const id = request.params.id
+
+  const blog = await Blog.findById(id)
+
+  if (blog) {
+    response.json(blog)
+  } else {
+    response.status(404).end()
+  }
+})
+
+
 blogsRouter.post('/', async (request, response) => {
   const { body, user } = request
 
@@ -61,6 +74,7 @@ blogsRouter.put('/:id', async (request, response) => {
     author: body.author,
     url: body.url,
     likes: body.likes,
+    isLiked: body.isLike
   }
 
   const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, blog, { new: true })

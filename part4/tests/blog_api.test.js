@@ -39,7 +39,6 @@ describe('when there initially some blogs saved', () => {
   })
 
   test('correct number of blogs in JSON', async ()  => {
-    console.log('userToken: ' + token)
     const result = await api
       .get('/api/blogs')
       .set('Authorization', `Bearer ${token}`)
@@ -52,6 +51,25 @@ describe('when there initially some blogs saved', () => {
 })
 
 describe('viewing a specific blog', () => {
+  let token
+  beforeEach(async () => {
+    const saltRounds = 10
+    const passwordHash =  await bcrypt.hash('abc123', saltRounds)
+
+    const rootUser = await new User({
+      username: 'rootUser',
+      name: 'abc',
+      passwordHash
+    }).save()
+
+    const userForToken = {
+      username: rootUser.username,
+      id: rootUser.id,
+    }
+
+    token = jwt.sign(userForToken, process.env.SECRET)
+  })
+
   test('a unique id is verified', async () => {
     const response = await helper.blogsInDb()
   
@@ -59,6 +77,19 @@ describe('viewing a specific blog', () => {
       expect(blog.id).toBeDefined()
     })
   }, 10000)
+
+  test('view a blog by specific id', async () => {
+    const blogsAtStart = await helper.blogsInDb()
+    const blogToView = blogsAtStart[0]
+
+    const result = await api
+      .get(`/api/blogs/${blogToView.id}`)
+      .set('Authorization', `Bearer ${token}`)
+      .expect(200)
+      .expect('Content-Type', /application\/json/)
+    
+    expect(result.body).toEqual(blogToView)
+  })
 
 })
 
