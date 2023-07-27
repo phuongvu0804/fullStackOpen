@@ -1,9 +1,9 @@
 import { useQuery } from 'react-query'
 
+import { getAnecdotes } from './requests'
 import AnecdoteForm from './components/AnecdoteForm'
 import AnecdoteList from './components/AnecdoteList'
 import Notification from './components/Notification'
-import { getAnecdotes } from './requests'
 
 const App = () => {
   const {isLoading, isError, data, error} = useQuery('anecdotes', getAnecdotes, {
@@ -12,7 +12,7 @@ const App = () => {
   })
 
   if (isLoading) {
-    return <div>...loading</div>
+    return <div>...Loading</div>
   } 
   
   if (isError) {
