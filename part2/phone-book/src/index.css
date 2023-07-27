@@ -1,0 +1,21 @@
+.noti {
+    background: lightgrey;
+    font-size: 20px;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    width: fit-content;
+}
+
+.noti.error {
+    color: red;
+}
+
+.noti.success {
+    color: green;
+}
+
+.noti.info {
+    color: blue;
+}
