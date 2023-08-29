@@ -3,10 +3,10 @@ Cypress.Commands.add('login', function ({ username, password }) {
     username,
     password,
   }).then(({ body }) => {
-    window.localStorage.setItem('loggedInBlogAppUser', JSON.stringify(body))
-  })
-  cy.visit('')
-})
+    window.localStorage.setItem('loggedInBlogAppUser', JSON.stringify(body));
+  });
+  cy.visit('');
+});
 
 Cypress.Commands.add('createBlog', function (blog) {
   cy.request({
@@ -14,10 +14,8 @@ Cypress.Commands.add('createBlog', function (blog) {
     method: 'POST',
     body: blog,
     headers: {
-      Authorization: `Bearer ${
-        JSON.parse(window.localStorage.getItem('loggedInBlogAppUser')).token
-      }`
-    }
-  })
-  cy.visit('')
-})
+      Authorization: `Bearer ${JSON.parse(window.localStorage.getItem('loggedInBlogAppUser')).token}`,
+    },
+  });
+  cy.visit('');
+});

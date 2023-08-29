@@ -1,37 +1,43 @@
-import React from 'react'
+import React from 'react';
 
-const LogInForm = ({
-  handleLogIn,
-  username,
-  password,
-  handleUsernameChange,
-  handlePasswordChange,
-}) => {
+//MUI
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import Button from '@mui/material/Button';
+
+const LogInForm = ({ handleLogIn, username, password, handleUsernameChange, handlePasswordChange }) => {
   return (
-    <form onSubmit={handleLogIn}>
-      <div>
-        <span>username</span>
-        <input
-          id='logInUsername'
-          type='text'
-          name='username'
+    <Box component="form" onSubmit={handleLogIn}>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <InputLabel sx={{ marginRight: 1 }}>Username</InputLabel>
+        <TextField
+          id="logInUsername"
           value={username}
           onChange={handleUsernameChange}
+          type="text"
+          name="username"
+          variant="standard"
+          size="small"
         />
-      </div>
-      <div>
-        <span>password</span>
-        <input
-          id='logInPassword'
-          type='password'
-          name='password'
+      </Box>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <InputLabel sx={{ marginRight: 1 }}>Password</InputLabel>
+        <TextField
+          id="logInPassword"
           value={password}
           onChange={handlePasswordChange}
+          type="text"
+          name="password"
+          variant="standard"
+          size="small"
         />
-      </div>
-      <button type='submit'>Log in</button>
-    </form>
-  )
-}
+      </Box>
+      <Button type="submit" variant="contained" size="medium" sx={{ background: 'var(--primary-color)', marginTop: 1 }}>
+        Log in
+      </Button>
+    </Box>
+  );
+};
 
-export default LogInForm
+export default LogInForm;

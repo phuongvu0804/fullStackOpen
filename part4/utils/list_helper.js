@@ -1,33 +1,23 @@
 const dummy = (blogs) => {
   if (blogs) {
-    return 1
+    return 1;
   }
-}
+};
 
 const totalLikes = (blogs) => {
   return blogs.reduce((acc, blog) => {
-    return acc + blog.likes
-  }, 0)
-}
+    return acc + blog.likes;
+  }, 0);
+};
 
 const favoriteBlog = (blogs) => {
-  if (blogs.length === 0) return null
+  if (blogs.length === 0) return null;
 
-  const maxLikeBlog = blogs.reduce(function(acc, currentVal){
-    // return acc.likes < currentVal.likes ? {
-    //   title: currentVal.title,
-    //   author: currentVal.author,
-    //   likes: currentVal.likes
-    // } :  {
-    //   title: acc.title,
-    //   author: acc.author,
-    //   likes: acc.likes
-    // }
+  const maxLikeBlog = blogs.reduce(function (acc, currentVal) {
+    return acc.likes < currentVal.likes ? currentVal : acc;
+  });
 
-    return acc.likes < currentVal.likes ? currentVal : acc
-  })
+  return maxLikeBlog;
+};
 
-  return maxLikeBlog
-}
-
-module.exports = { dummy, totalLikes, favoriteBlog }
+module.exports = { dummy, totalLikes, favoriteBlog };
