@@ -17,12 +17,6 @@ import Container from '@mui/material/Container';
 
 const App = () => {
   const dispatch = useDispatch();
-  // const user = useSelector((state) => state.user);
-
-  /*const handleLogOut = () => {
-    window.localStorage.removeItem('loggedInBlogAppUser');
-    dispatch(removeUser(user));
-  };*/
 
   //Check if user is logged in
   useEffect(() => {
@@ -42,16 +36,6 @@ const App = () => {
         <Typography variant="h1" gutterBottom>
           Blogs
         </Typography>
-        {/* {user && (
-          <div>
-            <p>
-              <Link to={`users/${user.username}`}>{user.username}</Link> logged in
-            </p>
-            <button id="logOutBtn" onClick={handleLogOut}>
-              Log out
-            </button>
-          </div>
-        )} */}
 
         <Routes>
           <Route path="/users/:id" element={<User />} />
